@@ -1,0 +1,93 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #f8f9fa;
+    --border-radius: 0.25em;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 2em;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.del {
+    color: #dc3545;
+    background: transparent !important;
+    &:hover {
+        color: #bd2130;
+    }
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.5em;
+    border-radius: var(--border-radius);
+    border: 1px solid #ced4da;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 0.5em;
+    border-radius: var(--border-radius);
+    background-color: #e9ecef;
+    margin-bottom: 0.5em;
+}
+
+.field {
+    margin-bottom: 1em;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.action {
+    display: flex;
+    gap: 0.5em;
+    margin-top: 1em;
+}
+
+.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    padding: 0.5em;
+    border-radius: var(--border-radius);
+}
+
+.success {
+    color: #155724;
+    background-color: #d4edda;
+    padding: 0.5em;
+    border-radius: var(--border-radius);
+}
+
+a {
+    color: var(--primary-color);
+}
