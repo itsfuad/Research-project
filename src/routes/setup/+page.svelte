@@ -29,7 +29,7 @@
 
     <div class="button-group">
         {#each shuffledActions() as action}
-            <button onclick={() => addAction(action.name)}>{action.name}{@html action.icon}</button>
+            <button class="action" onclick={() => addAction(action.name)}>{action.name}{@html action.icon}</button>
         {/each}
     </div>
 
