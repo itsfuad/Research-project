@@ -32,10 +32,6 @@ const actions = [
         icon: "<i class='fas fa-map-marker-alt'></i>",
     },
     {
-        name: "Click Profile",
-        icon: "<i class='fas fa-user'></i>",
-    },
-    {
         name: "Click Post",
         icon: "<i class='fas fa-image'></i>",
     },

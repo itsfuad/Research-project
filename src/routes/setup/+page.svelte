@@ -5,16 +5,31 @@
     
     let userid = $state("");
 
+    let saved = $state(false);
+    let reset = $state(false);
+
+    let actions = $state(shuffledActions());
+
     function addAction(action: string) {
         chosenPattern.push(action);
     }
 
     function resetPattern() {
         chosenPattern.length = 0;
+        reset = true;
+        saved = false;
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => reset = false, 3000);
     }
+
+    let timeout = 0;
 
     function savePattern() {
         localStorage.setItem(`${userid}-auth`, JSON.stringify(chosenPattern));
+        saved = true;
+        reset = false;
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => saved = false, 3000);
     }
 </script>
 
@@ -28,7 +43,7 @@
     <p>Choose actions that will serve as your authentication pattern.</p>
 
     <div class="button-group">
-        {#each shuffledActions() as action}
+        {#each actions as action}
             <button class="action" onclick={() => addAction(action.name)}>{action.name}{@html action.icon}</button>
         {/each}
     </div>
@@ -44,6 +59,13 @@
             </li>
         {/each}
     </ul>
+
+    {#if reset}
+        <p class="error">Pattern reset.</p>
+    {/if}
+    {#if saved}
+        <p class="success">Pattern saved successfully.</p>
+    {/if}
 
     <button onclick={resetPattern}>Reset Pattern</button>
     <button onclick={savePattern}>Save Pattern</button>

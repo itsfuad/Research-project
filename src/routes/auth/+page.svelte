@@ -9,6 +9,8 @@
     let success = $state(false);
     let result = $state("");
 
+    let actions = $state(shuffledActions());
+
     function loadPattern() {
         if (userId === "") {
             loadedError = "Please enter a user ID.";
@@ -28,6 +30,16 @@
     }
 
     function checkPattern() {
+        if (savedPattern.length === 0) {
+            result = "No pattern loaded. Please load a pattern first.";
+            return;
+        }
+
+        if (userInputPattern.length === 0) {
+            result = "Please select an action.";
+            return;
+        }
+
         if (JSON.stringify(userInputPattern) === JSON.stringify(savedPattern)) {
             result = "Authentication successful!";
             success = true;
@@ -57,7 +69,7 @@
     <p>Repeat the pattern you set during setup.</p>
 
     <div class="button-group">
-        {#each shuffledActions() as action}
+        {#each actions as action}
             <button class="action" onclick={() => addAction(action.name)}>{action.name}{@html action.icon}</button>
         {/each}
     </div>
@@ -67,7 +79,9 @@
         {#each userInputPattern as action}
             <li>
                 {action}
-                <button aria-label="delete" class="del" onclick={() => userInputPattern.splice(userInputPattern.indexOf(action), 1)}>
+                <button aria-label="delete" class="del" onclick={() => {
+                    userInputPattern.splice(userInputPattern.indexOf(action), 1)
+                }}>
                     <i class="fas fa-trash"></i>
                 </button>
             </li>
